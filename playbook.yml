@@ -18,8 +18,6 @@
         name: redmine
         image: redmine
         state: started
-        auto_remove: yes
-        pull: yes
         ports:
           - 80:3000
         env:
@@ -34,10 +32,12 @@
 
 - hosts: webservers
   remote_user: root
+
   vars_files:
     - group_vars/datadog.yml
 
   roles:
-    - datadog.datadog
+    - role: datadog.datadog
+      become: yes
 
 
