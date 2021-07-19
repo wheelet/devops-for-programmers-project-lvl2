@@ -2,9 +2,6 @@
   become: true
   remote_user: root
 
-  vars_files:
-    - group_vars/datadog.yml
-
   vars:
     pip_install_packages:
       - name: docker
@@ -30,10 +27,10 @@
           REDMINE_DB_POSTGRES: "{{ redmine_db_postgres }}"
           REDMINE_DB_DATABASE: "{{ redmine_db_database }}"
 
-- hosts: webservers
-  remote_user: root
+    - name: import monitoring
+      import_playbook: monitring.yml
+
   roles:
     - geerlingguy.pip
-    - role: datadog.datadog
-      hosts: webservers
+
 
