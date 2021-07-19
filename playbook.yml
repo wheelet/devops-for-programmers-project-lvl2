@@ -1,6 +1,5 @@
 - hosts: all
-  become: yes
-  become_user: root
+  become: true
   remote_user: root
 
   vars:
