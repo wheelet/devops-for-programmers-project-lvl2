@@ -30,7 +30,6 @@
   roles:
     - geerlingguy.pip
 
-- hosts: webservers
-  import_playbook: monitoring.yml
+- import_playbook: monitoring.yml
 
 
