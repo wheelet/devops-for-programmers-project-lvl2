@@ -2,6 +2,9 @@
   become: true
   remote_user: root
 
+  vars_files:
+    - group_vars/datadog.yml
+
   vars:
     pip_install_packages:
       - name: docker
@@ -29,15 +32,5 @@
 
   roles:
     - geerlingguy.pip
-
-- hosts: webservers
-  remote_user: root
-
-  vars_files:
-    - group_vars/datadog.yml
-
-  roles:
-    - role: datadog.datadog
-      become: yes
-
+    - { role: datadog.datadog, become: yes }
 
