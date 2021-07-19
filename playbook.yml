@@ -27,10 +27,9 @@
           REDMINE_DB_POSTGRES: "{{ redmine_db_postgres }}"
           REDMINE_DB_DATABASE: "{{ redmine_db_database }}"
 
-    - name: import monitoring
-      import_playbook: monitring.yml
-
   roles:
     - geerlingguy.pip
+
+  - import_playbook: monitoring.yml
 
 
