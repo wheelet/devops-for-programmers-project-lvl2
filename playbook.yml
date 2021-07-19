@@ -37,9 +37,9 @@
           REDMINE_DB_POSTGRES: "{{ redmine_db_postgres }}"
           REDMINE_DB_DATABASE: "{{ redmine_db_database }}"
 
-  - name: datadog
-    include_role:
-      name: datadog.datadog
+    - name: datadog
+      include_role:
+        name: datadog.datadog
 
   roles:
     - geerlingguy.pip
