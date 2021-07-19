@@ -37,8 +37,10 @@
           REDMINE_DB_POSTGRES: "{{ redmine_db_postgres }}"
           REDMINE_DB_DATABASE: "{{ redmine_db_database }}"
 
-- hosts: webservers
-  remote_user: root
+  - name: datadog
+    include_role:
+      name: datadog.datadog
+
   roles:
     - geerlingguy.pip
     - datadog.datadog
