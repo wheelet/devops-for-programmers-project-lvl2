@@ -11,6 +11,7 @@
       apt:
         update_cache: true
         cache_valid_time: 600
+      import_playbook: monitoring.yml
 
   tasks:
     - name: Start docker container
@@ -30,5 +31,4 @@
   roles:
     - geerlingguy.pip
 
-- include: monitoring.yml
 
