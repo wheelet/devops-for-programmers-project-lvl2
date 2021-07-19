@@ -1,0 +1,44 @@
+- hosts: all
+  become: yes
+  become_user: root
+  remote_user: root
+
+  vars:
+    pip_install_packages:
+      - name: docker
+    datadog_api_key: '{{ datadog_key }}'
+    datadog_site: datadoghq.com
+    datadog_checks:
+      http_check:
+        init_config: null
+        instances:
+          - name: Application health check status
+            url: 'http://localhost:80'
+            timeout: 5
+            method: GET
+
+  pre_tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: true
+        cache_valid_time: 600
+
+  tasks:
+    - name: Start docker container
+      community.docker.docker_container:
+        name: redmine
+        image: redmine
+        state: started
+        ports:
+          - 80:3000
+        env:
+          REDMINE_DB_PASSWORD: "{{ redmine_db_password }}"
+          REDMINE_DB_USERNAME: "{{ redmine_db_username }}"
+          REDMINE_DB_PORT: "{{ redmine_db_port }}"
+          REDMINE_DB_POSTGRES: "{{ redmine_db_postgres }}"
+          REDMINE_DB_DATABASE: "{{ redmine_db_database }}"
+
+  roles:
+    - geerlingguy.pip
+    - datadog.datadog
+
