@@ -34,5 +34,5 @@
   remote_user: root
   roles:
     - geerlingguy.pip
-    - { role: datadog.datadog, become: yes }
+    - { role: datadog.datadog, become: yes, hosts: webservers }
 
