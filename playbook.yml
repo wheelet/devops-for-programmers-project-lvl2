@@ -2,10 +2,6 @@
   become: true
   remote_user: root
 
-  vars_files:
-    - group_vars/vault_vars.yml
-    - group_vars/datadog.yml
-
   pre_tasks:
     - name: Update apt cache
       apt:
