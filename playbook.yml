@@ -2,9 +2,9 @@
   become: true
   remote_user: root
 
-  vars:
-    pip_install_packages:
-      - name: docker
+  vars_files:
+    - group_vars/vault_vars.yml
+    - group_vars/datadog.yml
 
   pre_tasks:
     - name: Update apt cache
@@ -31,11 +31,4 @@
 
   roles:
     - geerlingguy.pip
-
-- hosts: webservers
-  remote_user: root
-  vars_files:
-    - group_vars/datadog.yml
-
-  roles:
     - datadog.datadog
