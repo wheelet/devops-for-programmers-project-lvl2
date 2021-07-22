@@ -2,5 +2,3 @@ redmine_db_username: "doadmin"
 redmine_db_port: "25060"
 redmine_db_postgres: "project-db-do-user-7842351-0.b.db.ondigitalocean.com"
 redmine_db_database: "defaultdb"
-pip_install_packages:
-  - name: docker
